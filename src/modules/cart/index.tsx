@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 import { ButtonHumanity } from '@/common/components/ButtonHumanity';
 import { OrderDetails } from '@/common/components/OrderDetails';
-import { getCurrencyFromCountry, getItemCurrencySymbol } from '@/common/utils/srting';
+import { getCurrencyFromCountry } from '@/common/utils/srting';
 import { CartItem } from '@/core/redux/slices/cartSlice';
 
 import { useHook } from './hook';
@@ -35,8 +35,7 @@ export const Cart = () => {
           </div>
         </div>
         <div className="text-lg font-light text-primary">
-          {item.currency}
-          {getItemCurrencySymbol(item.currency)}
+          {getCurrencyFromCountry(country?.value)}
           {item.price}
         </div>
       </div>

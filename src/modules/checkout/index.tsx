@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import { ButtonHumanity } from '@/common/components/ButtonHumanity';
 import { OrderDetails } from '@/common/components/OrderDetails';
 import { CartItem } from '@/core/redux/slices/cartSlice';
-import { getCurrencyFromCountry, getItemCurrencySymbol } from '@/common/utils/srting';
+import { getCurrencyFromCountry } from '@/common/utils/srting';
 import { useHook } from './hook';
 import { Input } from '@/common/components/Form/Input';
 import Link from 'next/link';
@@ -49,8 +49,7 @@ export const Checkout = () => {
           </div>
         </div>
         <div className="col-span-1 text-lg font-light text-primary">
-          {item.currency}
-          {getItemCurrencySymbol(item.currency)}
+          {getCurrencyFromCountry(country?.value)}
           {item.price}
         </div>
       </div>

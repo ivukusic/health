@@ -105,6 +105,10 @@ export const Checkout = () => {
           errorMessage={formik.errors.email}
           {...fieldProps('email')}
         />
+        <div className="mb-3 text-[#B9BAC2]">
+          Please ensure your email is correct since we will send you the order confirmation there.
+        </div>
+
         <h2 className="mt-8 text-xl font-bold uppercase text-primary">Shipping address</h2>
         <Input
           className="mt-2"

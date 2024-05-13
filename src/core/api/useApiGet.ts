@@ -10,12 +10,12 @@ export const useApiGet = ({ key, fn, options }: { key: any; fn: any; options: an
 export const useApiSend = ({
   fn,
   onSuccess,
-  error,
+  onError,
   options = {},
 }: {
   fn: any;
   onSuccess?: any;
-  error?: any;
+  onError?: any;
   invalidateKey?: any;
   options?: UseMutationOptions;
 }) => {
@@ -26,7 +26,7 @@ export const useApiSend = ({
         onSuccess(data);
       }
     },
-    onError: error,
+    onError,
     retry: 2,
     ...options,
   });

@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export const useHook = () => {
-  const [isMenuVisible, setMenuVisible] = useState(false);
+  const router = useRouter();
 
-  const triggerHandle = () => {
-    setMenuVisible(!isMenuVisible);
+  const handleBack = () => {
+    router.back();
   };
 
-  return { isMenuVisible, triggerHandle };
+  return { handleBack };
 };

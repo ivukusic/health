@@ -1,7 +1,7 @@
-import { Inter } from 'next/font/google';
+import { Sofia_Sans } from 'next/font/google';
 import StoreProvider from './StoreProvider';
 
-const inter = Inter({ subsets: ['latin'] });
+const sofia = Sofia_Sans({ subsets: ['latin'] });
 
 export default function RootLayout({
   children,
@@ -11,7 +11,7 @@ export default function RootLayout({
   return (
     <StoreProvider>
       <html lang="en">
-        <body className={inter.className}>{children}</body>
+        <body className={sofia.className}>{children}</body>
       </html>
     </StoreProvider>
   );

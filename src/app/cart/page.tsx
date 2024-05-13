@@ -1,12 +1,12 @@
 import { Layout } from '@/modules/layout/default';
 import { Metadata } from 'next';
-import { SelectDeliveryCountry } from '@/modules/selectDeliveryCountry';
+import { Cart } from '@/modules/cart';
 
 export const metadata: Metadata = {
-  title: 'Humanity - select deliver country',
+  title: 'Humanity - cart',
   description: 'Slow down, or even, reverse your aging.',
   openGraph: {
-    title: 'Humanity - select deliver country',
+    title: 'Humanity - cart',
     url: '',
     type: 'website',
     description: 'Slow down, or even, reverse your aging.',
@@ -26,8 +26,8 @@ export default async function HomePage() {
   const data = await getData();
 
   return (
-    <Layout showBackButton={false}>
-      <SelectDeliveryCountry />
+    <Layout showBackButton>
+      <Cart />
     </Layout>
   );
 }

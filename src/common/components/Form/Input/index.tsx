@@ -4,6 +4,7 @@ import Image from 'next/image';
 interface Props {
   className?: string;
   classNameInput?: string;
+  floating?: boolean;
   label: string;
   value: string;
   onChange: () => void;
@@ -18,6 +19,7 @@ interface Props {
 export const Input = ({
   className,
   classNameInput,
+  floating,
   label,
   value,
   onChange,
@@ -29,8 +31,13 @@ export const Input = ({
   isValid,
 }: Props) => {
   return (
-    <div className={clsx('relative mb-3 w-full', className)}>
+    <div className={clsx('relative mb-4 w-full', className)}>
       <div className="relative w-full">
+        {!floating && (
+          <label htmlFor={name} className="text-md font-bold text-[#ffffff!important] opacity-90">
+            {label}
+          </label>
+        )}
         <input
           type={type}
           id={name}
@@ -40,16 +47,18 @@ export const Input = ({
           placeholder=" "
           disabled={disabled}
           className={clsx(
-            'autofill-transparent focus:ring-0; peer block w-full rounded-lg border border-neutral-300 bg-transparent px-3 pb-3 pt-5 text-sm text-white focus:border-primary focus:outline-none',
+            'autofill-transparent focus:ring-0; peer block w-full rounded-lg border border-[#B9BAC2] bg-transparent px-3 pb-3 pt-5 text-sm text-white focus:border-primary focus:outline-none',
             classNameInput,
             { 'input-error': !!errorMessage, 'input-success': isValid },
           )}
         />
-        <label
-          htmlFor={name}
-          dangerouslySetInnerHTML={{ __html: `${label}${required ? ' *' : ''}` }}
-          className="text-md absolute top-4 z-10 origin-[0] -translate-y-4 scale-[0.6] transform px-4 pl-5 font-normal text-[#ffffff!important] opacity-90 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-4 peer-focus:-translate-y-4 peer-focus:scale-[0.6] peer-focus:px-4"
-        />
+        {floating && (
+          <label
+            htmlFor={name}
+            dangerouslySetInnerHTML={{ __html: `${label}${required ? ' *' : ''}` }}
+            className="text-md absolute top-4 z-10 origin-[0] -translate-y-4 scale-[0.6] transform px-4 pl-5 font-normal text-[#ffffff!important] opacity-90 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-4 peer-focus:-translate-y-4 peer-focus:scale-[0.6] peer-focus:px-4"
+          />
+        )}
       </div>
 
       {!!errorMessage && (

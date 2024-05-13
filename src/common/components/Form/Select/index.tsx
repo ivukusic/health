@@ -7,17 +7,39 @@ import { Dropdown } from 'flowbite';
 import type { DropdownOptions, DropdownInterface } from 'flowbite';
 import type { InstanceOptions } from 'flowbite';
 import Image from 'next/image';
+import { MdKeyboardArrowDown } from 'react-icons/md';
+
+export interface SelectOption {
+  label: string;
+  value: string;
+}
+
+interface Props {
+  className?: string;
+  label?: string;
+  placeholder?: string;
+  value: SelectOption | null;
+  onChange: (_value: SelectOption) => void;
+  name: string;
+  required?: boolean;
+  errorMessage?: string;
+  disabled?: boolean;
+  type?: string;
+  isValid?: boolean;
+  options: SelectOption[];
+}
 
 export const Select = ({
   className,
   label,
+  placeholder,
   value,
   onChange,
   name,
   errorMessage,
   options,
   isValid,
-}: any) => {
+}: Props) => {
   const dropdownRef = useRef<any>();
 
   const onClick = () => {
@@ -53,24 +75,30 @@ export const Select = ({
         <div
           id={`dropdown-button-${name}`}
           className={clsx(
-            'autofill-transparent focus:ring-0; peer block h-[54px] w-full appearance-none rounded-lg border border-neutral-300 bg-transparent px-3 pb-4 pr-5 pt-5 text-[16px] text-white focus:border-primary focus:outline-none',
+            'autofill-transparent peer flex h-[54px] w-full appearance-none items-center rounded-lg border border-neutral-300 bg-transparent px-3 pr-2 text-[16px] text-white focus:border-primary focus:outline-none focus:ring-0',
             { 'input-error': !!errorMessage, 'input-success': isValid },
           )}
         >
-          <label
-            htmlFor={name}
-            dangerouslySetInnerHTML={{ __html: label }}
-            className={clsx(
-              'white text-md pointer-events-none absolute z-10 origin-[0] transform pl-0.5 font-normal text-white opacity-90 duration-300',
-              {
-                'top-1/2 -translate-y-1/2 scale-100': !value?.value,
-                'top-4 -translate-y-4 scale-[0.65] px-2 text-primary': !!value?.value,
-              },
-            )}
-          />
-          {value?.label || ' '}
-          <div className="absolute bottom-0 left-0 right-0 top-0" onClick={onClick} />
+          {!!label && (
+            <label
+              htmlFor={name}
+              dangerouslySetInnerHTML={{ __html: label }}
+              className={clsx(
+                'white text-md pointer-events-none absolute z-10 origin-[0] transform pl-0.5 font-normal text-white opacity-90 duration-300',
+                {
+                  'top-1/2 -translate-y-1/2 scale-100': !value?.value,
+                  'top-4 -translate-y-4 scale-[0.65] px-2 text-primary': !!value?.value,
+                },
+              )}
+            />
+          )}
+          <div className={clsx('flex flex-1', { 'opacity-70': !value })}>
+            {' '}
+            {value?.label || placeholder || ''}
+          </div>
+          <MdKeyboardArrowDown color="white" size={30} />
         </div>
+        <div className="absolute bottom-0 left-0 right-0 top-0" onClick={onClick} />
 
         <div
           id={`dropdown-${name}`}

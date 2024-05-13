@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { store } from '../redux/store';
 
-export const BASE_URL = 'http://localhost:2000';
+// export const BASE_URL = 'http://localhost:2000';
+export const BASE_URL = 'https://webhook.site/';
 
 const api = axios.create({
   baseURL: BASE_URL,

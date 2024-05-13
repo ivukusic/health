@@ -1,22 +1,21 @@
 import { ReactNode } from 'react';
 
 import { Header } from '@/common/components/Header';
-import { Footer } from '@/common/components/Footer';
-import { CursorFollower } from '@/common/components/CursorFollower';
 
 import '../../common/style/global.css';
 
 interface Props {
   children: ReactNode;
+  showBackButton: boolean;
 }
 
-export const Layout = ({ children }: Props) => {
+export const Layout: React.FC<Props> = ({ children, showBackButton }) => {
   return (
     <>
-      <Header />
-      <main className="flex-grow-1 min-h-vh-80 text-default flex h-full flex-col">{children}</main>
-      <Footer />
-      <CursorFollower />
+      <Header showBackButton={showBackButton} />
+      <main className="flex-grow-1 min-h-vh-80 text-default flex h-full flex-col overflow-scroll pt-[100px]">
+        {children}
+      </main>
     </>
   );
 };

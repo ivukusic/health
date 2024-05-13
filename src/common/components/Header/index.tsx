@@ -1,26 +1,19 @@
 'use client';
 
-import React, { MouseEvent, useEffect, useState } from 'react';
+import React, { MouseEvent } from 'react';
 
-import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
 
 import { useHook } from './hook';
-import { Menu } from '../Menu';
+import { IoIosArrowRoundBack } from 'react-icons/io';
 
-export const Header: React.FC = () => {
-  const [isOnTop, setIsOnTop] = useState(true);
-  const { isMenuVisible, triggerHandle } = useHook();
+interface Props {
+  showBackButton: boolean;
+}
 
-  useEffect(() => {
-    if (document.location.hash) {
-      setIsOnTop(!window.scrollY);
-    }
-    window.addEventListener('scroll', () => {
-      setIsOnTop(!window.scrollY);
-    });
-  }, []);
+export const Header: React.FC<Props> = ({ showBackButton }) => {
+  const { handleBack } = useHook();
 
   const onLogoClick = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -30,26 +23,24 @@ export const Header: React.FC = () => {
   };
 
   return (
-    <header
-      className={clsx('fixed left-0 top-0 z-[9999] min-h-10 w-full p-4 px-10 transition-all', {
-        'bg-secondary': !isOnTop,
-        'bg-transparent': isOnTop,
-      })}
-    >
-      <div className="flex flex-row items-center justify-between py-4">
+    <header className="lef-0 fixed top-0 z-50 w-screen bg-background">
+      <div className="container flex w-full flex-row items-center justify-between  py-4">
+        {showBackButton ? (
+          <button className="menu-button" onClick={handleBack}>
+            <IoIosArrowRoundBack color="white" size={44} />
+          </button>
+        ) : (
+          <div />
+        )}
         <Link className="z-[99999]" href="/" onClick={onLogoClick}>
           <Image
-            className={clsx('transition-all duration-500 ease-in-out', {
-              'h-[33px] w-[147px] lg:h-[44.9px] lg:w-[200px]': isOnTop,
-              'h-[33px] w-[147px] lg:h-[33px] lg:w-[147px]': !isOnTop,
-            })}
+            className="h-[33px] w-[147px] transition-all duration-500 ease-in-out lg:h-[44.9px] lg:w-[200px]"
             src="https://global-uploads.webflow.com/5fb25baf136b324f8da5b1a4/5fb7cc1d53b786a6851a3627_Humanity%20logo.svg"
             height={33}
             width={147}
             alt="Humanity"
           />
         </Link>
-        <Menu toggleMenu={triggerHandle} isMenuVisible={isMenuVisible} />
       </div>
     </header>
   );

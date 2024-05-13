@@ -1,0 +1,12 @@
+{
+  "workbench.colorCustomizations": {
+    "titleBar.activeBackground": "#018e9e",
+    "titleBar.inactiveBackground": "#018e9e",
+    "titleBar.activeForeground": "#000000",
+    "titleBar.inactiveForeground": "#343434"
+  },
+  "flow.pathToFlow": "${workspaceFolder}/node_modules/.bin/flow",
+  "eslint.enable": true,
+  "editor.formatOnSave": true,
+  "editor.rulers": [100, 120],
+}

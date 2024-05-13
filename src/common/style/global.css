@@ -1,8 +1,8 @@
+@import './partials/btn.pcss';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import './style/btn.pcss';
 
 :root {
   --foreground-rgb: 0, 0, 0;

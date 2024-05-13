@@ -1,0 +1,70 @@
+.btn {
+  &.btn-custom-primary {
+    @apply relative border-none bg-transparent pb-5 pt-5 align-middle font-bold text-primary hover:bg-transparent lg:px-16;
+
+    &.on-light {
+      @apply text-white;
+    }
+
+    &.on-black {
+      @apply text-black;
+    }
+
+    &.bg-white & {
+      @apply text-black;
+    }
+
+    > span {
+      @apply absolute inset-0;
+
+      &:before,
+      &:after {
+        @apply absolute h-[3px] w-[3px] bg-primary transition-all content-[""];
+      }
+
+      &:first-child {
+        &:before {
+          @apply bottom-0 left-0 h-[50%];
+        }
+
+        &:after {
+          @apply right-0 top-0 h-[52%];
+        }
+      }
+
+      &:last-child {
+        &:before {
+          @apply right-0 top-0 w-[60%];
+        }
+
+        &:after {
+          @apply bottom-0 left-0 w-[60%];
+        }
+      }
+    }
+
+    &:focus,
+    &:hover {
+      span {
+        &:before,
+        &:after {
+          @apply h-1 w-1;
+        }
+
+        &:first-child {
+          &:before,
+          &:after {
+            @apply bottom-0 top-0 h-full;
+          }
+        }
+
+        &:last-child {
+          &:before,
+          &:after {
+            @apply w-full;
+          }
+        }
+      }
+    }
+  }
+}
